@@ -83,16 +83,16 @@ SE		8	noun
 SUD-EST	 	8	noun
 SO		9	noun
 SUD-OEST	9	noun
-DALT	 	10	noun
-;ADALT		10	noun
-D		10	noun
-BAIX	 	11	noun
-;ABAIX		11	noun
-B		11	noun
+AMUNT	 	10	noun
+AM		10	noun
+AVALL	 	11	noun
+AV		11	noun
 PUJAR		10	verb
 PUJA'T		10	verb
 PUJA	 	10	verb
 PUJAR-SE	10	verb
+DALT		10	verb ; Dalt no és un verb però així com surt al text és una ordre habitual
+BAIX		11	verb ; Baix no és un verb però així com surt al text és una ordre habitual
 BAIXAR		11	verb
 BAIXA		11	verb
 BAIXA'T	 	11	verb
@@ -101,6 +101,7 @@ ENTRAR		12	verb
 SORTIR		13	verb
 ENTRA		12	verb
 FICA-T'HI	12	verb	
+FORA		13	verb ; Fora  no és un verb però així com surt al text és una ordre habitual
 SURT	 	13	verb
 
 	; -- Noms --	< 20 indica que es poden fer servir com a verbs
@@ -135,8 +136,9 @@ DESPULLA'T	22	verb
 SEURE		23	verb
 SEU-TE		23	verb
 SEU		23	verb
-MIRAR		24	verb	
+MIRAR		24	verb
 MIRA	 	24	verb
+M		24	verb
 ACABA	 	25	verb
 ACABAR	 	25	verb
 FI		25	verb
@@ -653,7 +655,7 @@ Perdó?
 /9
 Duus:	
 /10
- (puesto/a)
+ (posat/da)
 /11
 cap objecte.
 
@@ -664,7 +666,7 @@ Segur?
 Jugues un altre cop? 
 
 /14
-Arreveure...
+Arreveure…
 /15
 Molt bé.
 
@@ -711,12 +713,12 @@ S
 /31	
 N
 /32
-Més...
+Més…
 /33
 > 
-/34	;Vacío. No se usa
+/34		;Buit. No es fa servir
 /35
-El temps passa...
+El temps passa…
 
 /36
 Agafes {OREF}.
@@ -770,16 +772,12 @@ cap objecte
 
 /54
 No es troba el fitxer.
-
 /55
 El fitxer s'ha fet malbé.
-
 /56
 Error de lectura/escriptura. No s'ha desat el fitxer.
-
 /57
 Directori ple.
-
 /58
 Introdueix el nom amb el que vares desar la partida.
 /59
@@ -801,63 +799,57 @@ són
 dins hi ha 
 /67
 damunt hi ha 
-
-
 /MTX 	; ** Missatges de l'usuari **
 /0
-¡La balsa está desierta!
+La balsa és deserta!
 
 
 /1000
-Salidas visibles: 
+Sortides visibles: 
 /1001
-No hay salidas visibles.
+No hi ha cap sortida visible.
 /1002
 /1003
 /1004
-al {ACTION|nord|nord}
+al {ACTION|vés al nord|nord}
 /1005
-al {ACTION|sud|sud}
+al {ACTION|vés al sud|sud}
 /1006
-al {ACTION|est|est}
+a l'{ACTION|vés al est|est}
 /1007
-al {ACTION|oest|oest}
+a l'{ACTION|vés al oest|oest}
 /1008
-al {ACTION|nord-est|nord-est}
+al {ACTION|vés al nord-est|nord-est}
 /1009
-al {ACTION|nord-oest|nord-oest}
+al {ACTION|vés al nord-oest|nord-oest}
 /1010
-al {ACTION|sud-est|sud-est}
+al {ACTION|vés al sud-est|sud-est}
 /1011
-al {ACTION|sud-oest|sud-oest}
+al {ACTION|vés al sud-oest|sud-oest}
 /1012
-{ACTION|dalt|dalt}
+a {ACTION|pujar|dalt}
 /1013
-{ACTION|baix|baix}
+a {ACTION|baixar|baix}
 /1014
-{ACTION|dins|dins}
-/1015
-{ACTION|fora|fora}
-
-
-/OTX 	; ** Texte dels objectes **
-/0
+a {ACTION|entra|dins}
+/1015 			; No deixar cap línia en blanc després de la darrera direcció 
+a {ACTION|surt|fora}
+/OTX 			; ** Texte dels objectes **
+/0			; No deixar cap línia en blanc després del darrer nom d'objecte
 una antorxa
-
-
-/LTX 	; ** Texte de les localitats **
+/LTX 			; ** Texte de les localitats **
 /0
-Estás en una pequeña balsa flotando en mar abierto. El brillante sol {INK|yellow|amarillo} comienza a quemarte la piel mientras que una oscura aleta da vueltas en círculos en las claras aguas {PAPER|blue|{INK|white|azules}}.
+Ets a una petita balsa surant al mar obert. El brillant sol {INK|yellow|groc} comença a cremar-te la pell mentre que una obscura aleta dóna voltes en cercles a les clares aigües {PAPER|blue|{INK|white|blaves}}.
 
 
-/CON 	; ** Connexions entre localitats **
+/CON 			; ** Connexions entre localitats **
 ; Exemple
 ; N	4
 ; E	2
 
 
 /OBJ 	; ** Objectes i les seves propietas **
-;obj	loc	 peso	 nombre	adjetivo	atributo
+;obj	loc	pes	nom	adjectiu	atribut
 ;num	ini		
 
 /0	0	1	ANTORXA	_		ATTR aLight aFemale
@@ -993,7 +985,7 @@ AMAGAR _
  SYNONYM FICAR _
  LET 43 &&_voc_DINS
 
-; ** Converteix «POSAR QUELCOM DINS...» en «FICAR QUELCOM DINS...»
+; ** Converteix «POSAR QUELCOM DINS…» en «FICAR QUELCOM DINS…»
 POSAR _
  NOTEQ 51 255
  PRESENT @51
@@ -1238,7 +1230,7 @@ _	_
  COPYFF 14 44 	; Els hi donam la volta
  COPYFF 35 14
  COPYFF 45 35
- COPYFF 14 45 	; Els hi donam la volta a los adjetivos
+ COPYFF 14 45 	; Els hi donam la volta als adjectius
  WHATO 		; Forçam l'actualització dels marcadors 54-58
 
 
@@ -1257,7 +1249,7 @@ _	_
  COPYFF 14 44	; Els hi donam la volta
  COPYFF 35 14
  COPYFF 45 35
- COPYFF 14 45 	; Els hi donam la volta a los adjetivos
+ COPYFF 14 45 	; Els hi donam la volta als adjectius
  WHATO 		; Forçam l'actualització dels marcadors 54-58
 
 
@@ -1277,7 +1269,7 @@ _	_
  COPYFF 14 44 	; Els hi donam la volta
  COPYFF 35 14
  COPYFF 45 35
- COPYFF 14 45 	; Els hi donam la volta a los adjetivos
+ COPYFF 14 45 	; Els hi donam la volta als adjectius
  WHATO 		; Forçam l'actualització dels marcadors 54-58
 
 
@@ -1312,7 +1304,7 @@ _ _
 
 
 
-; #################################### RESPUESTAS POR DEFECTO ###################################
+; ##################################### RESPOSTES PER DEFECTE ###################################
 ; #												#
 ; #	Aquestes entrades donen les respuestes per defecte. Si no en posam abans cap entrada	#
 ; #	que ho eviti, s'arribarà fins aquí i es donarà la resposta per defecte.			#
@@ -1362,19 +1354,19 @@ ESCORCOLLA'T _	; REGÍSTRATE
 ;-----------------------------------------------
 
 SUICIDA'T _
- WRITELN "Aquesta no és la solució..."
+ WRITELN "Aquesta no és la solució…"
  DONE
 
 ;-----------------------------------------------
 
 RENTA'T _
- WRITELN "Ara mateix no et ve de gust..."
+ WRITELN "Ara mateix no et ve de gust…"
  DONE
 
 ;-----------------------------------------------
 
 XYZZY _
- WRITELN "Has jugat a massa aventures conversacionals..."
+ WRITELN "Has jugat a massa aventures conversacionals…"
  DONE
 
 ;-----------------------------------------------
@@ -1409,7 +1401,7 @@ TRANSCRIPCIO _
 AGAFAR _		 ; Agafar un objecte que és dins d'un contenidor
  PREP DE
  WHATOX2 14
- NOTEQ 14 255		 ; Si l'objecte referenciat per «noun2» és un objectr i...
+ NOTEQ 14 255		 ; Si l'objecte referenciat per «noun2» és un objectr i…
  ONOTZERO @14 aContainer ; és un contenidor
  SYNONYM TREURE _ 	 ; convertim «agafar objecte d'un contenidor» en «treure objecte d'un contenidor»
 
@@ -1440,7 +1432,7 @@ AGAFAR	_
 DEIXAR _		 ; DEIXAR un objecte dins d'un contenidor
  PREP DINS
  WHATOX2 14
- NOTEQ 14 255		 ; Si l'objecte referenciat per «noun2» és un objecte i...
+ NOTEQ 14 255		 ; Si l'objecte referenciat per «noun2» és un objecte i…
  ONOTZERO @14 aContainer ; és un contenidor
  SYNONYM FICAR _	 ; convertim «DEIXAR objecte dins un contenidor» en «FICAR objecte dins un contenidor»
 
@@ -1482,7 +1474,7 @@ TREURE _		 ; S'ha trobat un nom però no és un objecte
  WRITELN "No pots sacar eso."
  DONE
 
-TREURE _		 ; No s'ha trobat cap «noun1» conegut a la frase, i el «noun2» pren el seu lloc a la frase...		
+TREURE _		 ; No s'ha trobat cap «noun1» conegut a la frase, i el «noun2» pren el seu lloc a la frase…		
  BZERO 12 2		 ; S'ha de donar aquest missatge perquè el que volíem que fos el «noun1» no és al vocabulari
  EQ 44 255
  BNOTZERO 12 1
@@ -1493,7 +1485,7 @@ TREURE _		 ; Proves de treure un objecte que duus posat
  NOTEQ 51 255		
  WORN @51	
  ONOTZERO @51 aWear
- WRITELN "No pots treure {OREF} d'enlloc, en tot cas t'ho pots llevar perquè ho duus posat..."
+ WRITELN "No pots treure {OREF} d'enlloc, en tot cas t'ho pots llevar perquè ho duus posat…"
  DONE
 
 TREURE _		 ; TREURE un objecte però no s'especifica d'on
@@ -1605,7 +1597,7 @@ FICAR _		 	; S'ha trobat un nom però no és un objecte
  WRITELN "No pots ficar-hi això."
  DONE
 
-FICAR _		 	; No s'ha trobat «noun1» reconegut a la frase, i el «noun2» passa a ocupar-ne el seu lloc a la frase...		
+FICAR _		 	; No s'ha trobat «noun1» reconegut a la frase, i el «noun2» passa a ocupar-ne el seu lloc a la frase…		
  BZERO 12 2		; S'ha de donar aquest missatge perquè el que volíem que fos el «noun1» no és al vocabulari
  EQ 44 255
  BNOTZERO 12 1
@@ -1616,7 +1608,7 @@ FICAR _		 	; Provar de ficar un objecte que duim posat
  NOTEQ 51 255		
  WORN @51	
  ONOTZERO @51 aWear
- WRITELN "Abans hauríes de llevar-te {OREF} per poder-ho fer..."
+ WRITELN "Abans hauríes de llevar-te {OREF} per poder-ho fer…"
  DONE
 
 FICAR _		 	; FICAR un objecte que no duim
@@ -1670,7 +1662,7 @@ FICAR _		 	 ; FICAR un objecte de l'inventari dins un objecte present però que 
  OZERO @15 aContainer	; però no és un contenidor
  OZERO @15 aSupporter	; ni una superfície
  PRESENT @15
- WRITELN "No pots ficar-hi res dins d'això..."			 
+ WRITELN "No pots ficar-hi res dins d'això…"			 
  DONE					 
 
 FICAR _		 	 ; FICAR un objecte de l'inventari a un contenidor però que no és present
@@ -1683,7 +1675,7 @@ FICAR _		 	 ; FICAR un objecte de l'inventari a un contenidor però que no és p
  WRITELN "No pots ficar-hi {OREF} perquè no ho duus."
  DONE
 
-FICAR _		 	 ; FICAR un objecte de l'inventari dins una superfície però que no és present
+FICAR _		 	 ; FICAR un objecte de l'inventari dins un contenidor però que no és present
  NOTEQ 51 255
  CARRIED @51	
  NOTEQ 44 255 
@@ -1730,7 +1722,7 @@ FICAR _		 	 ; FICAR un objecte present dins un contenidor present
  AUTOP @15
  DONE
 
-FICAR _		 	; FICAR un objecte present dins una superfície present ; COMPROVAR dins o sobre?
+FICAR _		 	; FICAR un objecte present dins un superfície present ; COMPROVAR dins o sobre?
  NOTEQ 51 255
  CARRIED @51	
  NOTEQ 44 255
@@ -1898,7 +1890,7 @@ AMAGAR _
 AMAGAR _		; S'ha trobat un nom però no és un objecte
  NOTEQ 34 255
  EQ 51 255
- WRITELN "No creus que això serveixi de res..."
+ WRITELN "No creus que això serveixi de res…"
  DONE
 
 AMAGAR _		; És un objecte present
@@ -2432,7 +2424,7 @@ TOCAR _			; És un objecte present
 TOCAR _			; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No veus cap {OREF} per aquí."
+ WRITELN "No veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -2504,7 +2496,7 @@ OLORAR _		; És un objecte present
 OLORAR _		; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No veus cap {OREF} per aquí."
+ WRITELN "No veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -2553,7 +2545,7 @@ SACSEJAR _		; És un objecte present
 SACSEJAR _		; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No veus cap {OREF} per aquí."
+ WRITELN "No veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -2602,7 +2594,7 @@ BALANCEJA'T _		; És un objecte presente
 BALANCEJA'T _		; És un objecte ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No veus cap {OREF} per aquí."
+ WRITELN "No veus {OREF} per aquí."
  DONE
  
 ;-----------------------------------------------
@@ -2655,7 +2647,7 @@ CANTAR _
 ;-----------------------------------------------
 
 BALLAR _
- WRITELN "La veritat és que ballar no se't dóna gaire bé..."
+ WRITELN "La veritat és que ballar no se't dóna gaire bé…"
  DONE
 
 ;-----------------------------------------------
@@ -2753,7 +2745,7 @@ COPEJAR _		; És un objecte presente
 COPEJAR _		; És un objecte ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No veus cap {OREF} per aquí, en qualsevol cas la violència no és la solució."
+ WRITELN "No veus {OREF} per aquí, en qualsevol cas la violència no és la solució."
  DONE
 
 
@@ -2797,7 +2789,7 @@ EX	_		; S'ha trobat un nombre propi, i la «preposició» DINS
  NOTEQ 51 255
  ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
  PRESENT @51
- WRITELN "Quines idees..."
+ WRITELN "Quines idees…"
  DONE
 
 EX _
@@ -2836,7 +2828,7 @@ EX _			; S'ha trobat un nom però no és un objecte
  WRITELN "No hi veus sentit a examinar-ho això."
  DONE
 
-EX _			; És un objecte presente y contenedor, transaparente con cosas dentro
+EX _			; És un objecte present i contenidor, transaparent amb coses dins
  NOTEQ 51 255
  PRESENT @51
  ONOTZERO @51 aContainer
@@ -2892,7 +2884,7 @@ EX _			; És un objecte present i contenidor, que es pot tancar amb clau i bloca
  WRITELN "Examines {OREF} però no hi veus res especial. Si ho desbloques podràs veure el seu contingut."
  DONE
 
-EX _			; És un objecte presente i una superfície amb qualcom damunt
+EX _			; És un objecte presente i una superfície amb quelcom damunt
  NOTEQ 51 255
  PRESENT @51
  ONOTZERO @51 aSupporter
@@ -2915,7 +2907,7 @@ EX _			; És un objecte presente
 EX _			; És un objecte ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No veus cap {OREF} per aquí."	
+ WRITELN "No veus {OREF} per aquí."	
  DONE
 
 ;-----------------------------------------------
@@ -2964,7 +2956,7 @@ NETEJAR _		; És un objecte present
 NETEJAR _		; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No veus cap {OREF} per aquí."
+ WRITELN "No veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -3013,7 +3005,7 @@ GRATAR _		; És un objecte present
 GRATAR _		; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No veus cap {OREF}_ per aquí."
+ WRITELN "No veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -3060,7 +3052,7 @@ CREMAR _		; És un objecte present
 CREMAR _		; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No veus cap {OREF} per aquí."
+ WRITELN "No veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -3093,7 +3085,7 @@ APAGAR _		; És un objecte presente
 APAGAR _		; És un objecte ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No veus cap {OREF} per aquí."
+ WRITELN "No veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -3148,7 +3140,7 @@ TALLAR _		; És un objecte present
 TALLAR _		; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."
+ WRITELN "No hi veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -3195,7 +3187,7 @@ FERMAR _		; És un objecte presente
 FERMAR _		; És un objecte ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."
+ WRITELN "No hi veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -3242,7 +3234,7 @@ DESFERMAR _		; És un objecte present
 DESFERMAR _		; És un objecte ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."
+ WRITELN "No hi veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -3283,7 +3275,7 @@ OMPLIR _		; És un objecte present
 OMPLIR _		; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."
+ WRITELN "No hi veus {OREF} per aquí."
  DONE
 
 ;------------------------------------------------------
@@ -3342,7 +3334,7 @@ RETORÇAR _		; És un objecte present
 RETORÇAR _		; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."
+ WRITELN "No hi veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -3389,7 +3381,7 @@ ESTRENYER _		; És un objecte present
 ESTRENYER _		; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."
+ WRITELN "No hi veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -3438,7 +3430,7 @@ BESAR _			; És un objecte present
 BESAR _			; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."
+ WRITELN "No hi veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -3487,7 +3479,7 @@ ABRAÇAR _		; És un objecte present
 ABRAÇAR _		; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."
+ WRITELN "No hi veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -3538,7 +3530,7 @@ CONNECTAR _		; És un objecte presente
 CONNECTAR _		; És un objecte ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."
+ WRITELN "No hi veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -3590,7 +3582,7 @@ DESCONNECTAR _		; És un objecte present
 DESCONNECTAR _		; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."
+ WRITELN "No hi veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -3662,7 +3654,7 @@ OBRIR _			; És un objecte present
 OBRIR _			; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."
+ WRITELN "No hi veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -3712,7 +3704,7 @@ TANCAR _		; És un objecte present
 TANCAR _		; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."
+ WRITELN "No hi veus {OREF} per aquí."
  DONE
 
 ;----------------------------------------------
@@ -3745,7 +3737,7 @@ LLEGIR _		; És un objecte presente
 LLEGIR _		; És un objecte ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."
+ WRITELN "No hi veus {OREF} per aquí."
  DONE
 
 ;----------------------------------------------
@@ -3800,7 +3792,7 @@ XUCLAR _		; És un objecte presente
 XUCLAR _		; És un objecte ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."	
+ WRITELN "No hi veus {OREF} per aquí."	
  DONE
 
 ;-----------------------------------------------
@@ -3849,7 +3841,7 @@ TRENCAR _		; És un objecte presente
 TRENCAR _		; És un objecte ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} por aquí; en qualsevol cas, trencar això no és la solució."
+ WRITELN "No hi veus {OREF} per aquí; en qualsevol cas, trencar això no és la solució."
  DONE
 
  ;-----------------------------------------------
@@ -3872,7 +3864,7 @@ COMPRAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
  PRESENT @51
- WRITELN "Tot el món té un preu... però no és a la venda."
+ WRITELN "Tot el món té un preu… però no és a la venda."
  DONE
 
 COMPRAR _
@@ -3898,7 +3890,7 @@ COMPRAR _		; És un objecte presente
 COMPRAR _		; És un objecte ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."	
+ WRITELN "No hi veus {OREF} per aquí."	
  DONE
 
 ;------------------------------------------------------------
@@ -3921,7 +3913,7 @@ DOBLEGAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
  PRESENT @51
- WRITELN "Trobes que ja està bé com està..."
+ WRITELN "Trobes que ja està bé com està…"
  DONE
 
 DOBLEGAR _
@@ -3947,7 +3939,7 @@ DOBLEGAR _		; És un objecte presente
 DOBLEGAR _		; És un objecte ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."	
+ WRITELN "No hi veus {OREF} per aquí."	
  DONE
 
 ;------------------------------------------------------------
@@ -3970,7 +3962,7 @@ DESDOBLEGAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
  PRESENT @51
- WRITELN "Trobes que ja està bé com està..."
+ WRITELN "Trobes que ja està bé com està…"
  DONE
 
 DESDOBLEGAR _
@@ -3996,7 +3988,7 @@ DESDOBLEGAR _		; És un objecte presente
 DESDOBLEGAR _		; És un objecte ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."	
+ WRITELN "No hi veus {OREF} per aquí."	
  DONE
 
 ;------------------------------------------------------------
@@ -4029,7 +4021,7 @@ DONAR _			; Quan el pronom duu un NPC i hi ha «noun2», els intercanviam
  COPYFF 34 14	 	; Els hi donam la volta al Noun1 i al «noun2»
  COPYFF 44 34
  COPYFF 14 44
- COPYFF 35 14		; Els hi donam la volta al adjetivo de Noun1 y al adjetivo de Noun2
+ COPYFF 35 14		; Els hi donam la volta a l'adjectiu de Noun1 i a l'adjectiu de Noun2
  COPYFF 45 35
  COPYFF 14 45		; forçam al «parser» a que actualitzi els marcadors de l'objecte referenciat
  WHATO
@@ -4064,7 +4056,7 @@ DONAR _			; Intentar donar un objecte que duim posat
  NOTEQ 51 255		
  WORN @51	
  ONOTZERO @51 aWear
- WRITELN "Abans huries de llevar-te {OREF} per poder fer-ho..."
+ WRITELN "Abans huries de llevar-te {OREF} per poder fer-ho…"
  DONE
 
 DONAR _			; Donar un objecte que no duim
@@ -4105,7 +4097,7 @@ DONAR _			; Donar un objecte de l'inventari a un objecte present però que no é
  WHATOX2 13		; Passam el «noun2» al marcador 15
  NOTEQ 13 255	 	; El «noun2» és un objecte
  OZERO @13 aNPC		; però no és un personatge no jugador (NPC)
- WRITELN "Comences a perdre el cap..."			 
+ WRITELN "Comences a perdre el cap…"			 
  DONE					 
 
 DONAR _			; Dona un objecte de l'inventari a un NPC però que no és present
@@ -4132,7 +4124,7 @@ DONAR _			; Donar un objecte present a un NPC que hi és present
 
 ;------------------------------------------------------------
 
-MOSTRAR _		; Cuando el pronombre lleva un NPC y hay Noun2, los intercambiamos ; COMPROVAR
+MOSTRAR _		; Quan el pronom duu un NPC i hi ha Noun2, els intercanviam ; COMPROVAR
  SAME 46 34		; cert si el «noun1» que tenim prové del pronombre
  WHATOX 13		; ficam l'objecte referenciat al marcador 15
  ONOTZERO @13 aNPC	; és un NPC?
@@ -4175,10 +4167,10 @@ MOSTRAR _		; Intentar mostrar un objecte que duim posat
  NOTEQ 51 255		
  WORN @51	
  ONOTZERO @51 aWear
- WRITELN "Abans hauríes de llevar-te {OREF} per poder-ho fer això..."
+ WRITELN "Abans hauríes de llevar-te {OREF} per poder-ho fer això…"
  DONE
 
-MOSTRAR _		; MOSTRAR un objecte pero que no duim
+MOSTRAR _		; MOSTRAR un objecte però que no duim
  NOTEQ 51 255
  NOTCARR @51
  WRITELN "No duus {OREF}."
@@ -4209,14 +4201,14 @@ MOSTRAR _		; MOSTRAR un objecte de l'inventari a un «noun2» que no és un obje
  WRITELN "No pots mostrar-li {OREF} a això."			 
  DONE 
 
-MOSTRAR _		; MOSTRAR un objecte de linventari a un objecte present pero que no és un NPC
+MOSTRAR _		; MOSTRAR un objecte de linventari a un objecte present però que no és un NPC
  NOTEQ 51 255
  CARRIED @51
  NOTEQ 44 255
  WHATOX2 13		; Passam el «noun2» al marcador 15
  NOTEQ 13 255	 	; El «noun2» és un objecte
  OZERO @13 aNPC		; però no és un NPC
- WRITELN "Comences a perdre el cap..."			 
+ WRITELN "Comences a perdre el cap…"			 
  DONE					 
 
 MOSTRAR _		; MOSTRAR un objecte de l'inventari a un NPC però que no hi és present
@@ -4309,7 +4301,7 @@ CRIDAR _
  DONE
 
 CRIDAR _
- WRITELN "Crides tan fort com pots i... no passa res."
+ WRITELN "Crides tan fort com pots i… no passa res."
  DONE
  
 ;------------------------------------------------------------
@@ -4331,7 +4323,7 @@ DESPERTAR _
  DONE
 
 DESPERTAR _
- WRITELN "Et pessigues la galta pensant que et despertaràs però... no estás somint... o sí?"
+ WRITELN "Et pessigues la galta pensant que et despertaràs però… no estàs somiant… o sí?"
  DONE
 
 ;-----------------------------------------------
@@ -4484,7 +4476,7 @@ BUIDAR _		; És un objecte present
 BUIDAR _		; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."
+ WRITELN "No hi veus {OREF} per aquí."
  DONE
  
 ;------------------------------------------------------------
@@ -4507,7 +4499,7 @@ TRUCAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
  PRESENT @51
- WRITELN "No hi ha resposta..."					
+ WRITELN "No hi ha resposta…"					
  DONE
 
 TRUCAR _
@@ -4533,7 +4525,7 @@ TRUCAR _		; És un objecte presente
 TRUCAR _		; És un objecte ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."
+ WRITELN "No hi veus {OREF} per aquí."
  DONE
 
  ;------------------------------------------------------------
@@ -4555,7 +4547,7 @@ PREGUNTAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
  PRESENT @51
- WRITELN "No hi ha cap resposta..."					
+ WRITELN "No hi ha cap resposta…"					
  DONE
 
 PREGUNTAR _
@@ -4581,7 +4573,7 @@ PREGUNTAR _		; És un objecte present
 PREGUNTAR _		; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."
+ WRITELN "No hi veus {OREF} per aquí."
  DONE
 
 ;----------------------------------------------- 
@@ -4613,7 +4605,7 @@ CONSULTAR _		; És un objecte present
 CONSULTAR _		; És un objecte ausent
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí."
+ WRITELN "No hi veus {OREF} per aquí."
  DONE
 
 ;-----------------------------------------------
@@ -4635,7 +4627,7 @@ INSULTAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
  PRESENT @51
- WRITELN "No sembl que te faci molt de cas..."
+ WRITELN "No sembl que te faci molt de cas…"
  DONE
 
 INSULTAR _
@@ -4655,7 +4647,7 @@ INSULTAR _		; S'ha trobat un nom però no és un objecte
 INSULTAR _		; És un objecte present
  NOTEQ 51 255
  PRESENT @51
- WRITELN "Comences a perdre el cap..."
+ WRITELN "Comences a perdre el cap…"
  DONE
 
 INSULTAR _		; És un objecte ausent
@@ -4802,7 +4794,7 @@ PARLAR _		; S'ha trobat un nom però no és un objecte
 PARLAR _		; És un objecte present
  NOTEQ 51 255
  PRESENT @51
- WRITELN "Comences a perdre el cap..."
+ WRITELN "Comences a perdre el cap…"
  DONE
 
 PARLAR _		; És un objecte ausent
@@ -4831,7 +4823,7 @@ ANAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
  PRESENT @51
- WRITELN "Prefereixes no acostar-t'hi més..."
+ WRITELN "Prefereixes no acostar-t'hi més…"
  DONE
 
 ANAR _
@@ -4845,7 +4837,7 @@ ANAR _
 ANAR _			; S'ha trobat un nom però no és un objecte
  NOTEQ 34 255
  EQ 51 255
- WRITELN "No hi veus sentit a ir hacia eso."
+ WRITELN "No hi veus sentit cap a això."
  DONE
 
 ANAR _			; És un objecte presente

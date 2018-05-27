@@ -83,10 +83,12 @@ SE		8	noun
 SUD-EST	 	8	noun
 SO		9	noun
 SUD-OEST	9	noun
-AMUNT	 	10	noun
-AM		10	noun
-AVALL	 	11	noun
-AV		11	noun
+DALT	 	10	noun
+;ADALT		10	noun
+D		10	noun
+BAIX	 	11	noun
+;ABAIX		11	noun
+B		11	noun
 PUJAR		10	verb
 PUJA'T		10	verb
 PUJA	 	10	verb
@@ -133,9 +135,8 @@ DESPULLA'T	22	verb
 SEURE		23	verb
 SEU-TE		23	verb
 SEU		23	verb
-MIRAR		24	verb
+MIRAR		24	verb	
 MIRA	 	24	verb
-M		24	verb
 ACABA	 	25	verb
 ACABAR	 	25	verb
 FI		25	verb
@@ -626,7 +627,7 @@ I		2	conjunction
 DESPRÉS		2	conjunction ; A efectes del sistema. DESPRÉS és un adverbi
 	 
 
-/STX
+/STX 	; ** Missatges del sistema **
 /0
 No pots veure res, és molt fosc.
 
@@ -652,7 +653,7 @@ Perdó?
 /9
 Duus:	
 /10
- (posat/da)
+ (puesto/a)
 /11
 cap objecte.
 
@@ -781,15 +782,11 @@ Directori ple.
 
 /58
 Introdueix el nom amb el que vares desar la partida.
-
 /59
 No s'ha trobat cap partida desada aquest nom. Confirma que el nom és correcte i que vares jugar la partida a aquest mateix navegador.
-
 /60
 Introdueix el nome amb el que desar la partida. Ho hauràs de recordar per poder recuperar-la posteriorment.
-
 /61
-
 
 /62
 Perdó? Prova-ho amb unes altres paraules.
@@ -806,15 +803,15 @@ dins hi ha
 damunt hi ha 
 
 
-/MTX 	; ** Missatges del sistema **
+/MTX 	; ** Missatges de l'usuari **
 /0
-La balsa és deserta!
+¡La balsa está desierta!
 
 
 /1000
-Sortides visibles: 
+Salidas visibles: 
 /1001
-No hi ha cap sortida visible.
+No hay salidas visibles.
 /1002
 /1003
 /1004
@@ -850,7 +847,7 @@ una antorxa
 
 /LTX 	; ** Texte de les localitats **
 /0
-Ets a una petita balsa surant al mar obert. El brillant sol {INK|yellow|groc} comença a cremar-te la pell mentre que una obscura aleta dóna voltes en cercles a les clares aigües {PAPER|blue|{INK|white|blaves}}.
+Estás en una pequeña balsa flotando en mar abierto. El brillante sol {INK|yellow|amarillo} comienza a quemarte la piel mientras que una oscura aleta da vueltas en círculos en las claras aguas {PAPER|blue|{INK|white|azules}}.
 
 
 /CON 	; ** Connexions entre localitats **
@@ -860,7 +857,7 @@ Ets a una petita balsa surant al mar obert. El brillant sol {INK|yellow|groc} co
 
 
 /OBJ 	; ** Objectes i les seves propietas **
-;obj	loc	pes	nom	adjectiu	atribut
+;obj	loc	 peso	 nombre	adjetivo	atributo
 ;num	ini		
 
 /0	0	1	ANTORXA	_		ATTR aLight aFemale
@@ -1315,7 +1312,7 @@ _ _
 
 
 
-; ##################################### RESPOSTES PER DEFECTE ###################################
+; #################################### RESPUESTAS POR DEFECTO ###################################
 ; #												#
 ; #	Aquestes entrades donen les respuestes per defecte. Si no en posam abans cap entrada	#
 ; #	que ho eviti, s'arribarà fins aquí i es donarà la resposta per defecte.			#
@@ -1686,7 +1683,7 @@ FICAR _		 	 ; FICAR un objecte de l'inventari a un contenidor però que no és p
  WRITELN "No pots ficar-hi {OREF} perquè no ho duus."
  DONE
 
-FICAR _		 	 ; FICAR un objecte de l'inventari dins un contenidor però que no és present
+FICAR _		 	 ; FICAR un objecte de l'inventari dins una superfície però que no és present
  NOTEQ 51 255
  CARRIED @51	
  NOTEQ 44 255 
@@ -1733,7 +1730,7 @@ FICAR _		 	 ; FICAR un objecte present dins un contenidor present
  AUTOP @15
  DONE
 
-FICAR _		 	; FICAR un objecte present dins un superfície present ; COMPROVAR dins o sobre?
+FICAR _		 	; FICAR un objecte present dins una superfície present ; COMPROVAR dins o sobre?
  NOTEQ 51 255
  CARRIED @51	
  NOTEQ 44 255
@@ -2895,7 +2892,7 @@ EX _			; És un objecte present i contenidor, que es pot tancar amb clau i bloca
  WRITELN "Examines {OREF} però no hi veus res especial. Si ho desbloques podràs veure el seu contingut."
  DONE
 
-EX _			; És un objecte presente i una superfície amb quelcom damunt
+EX _			; És un objecte presente i una superfície amb qualcom damunt
  NOTEQ 51 255
  PRESENT @51
  ONOTZERO @51 aSupporter
@@ -3852,7 +3849,7 @@ TRENCAR _		; És un objecte presente
 TRENCAR _		; És un objecte ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} per aquí; en qualsevol cas, trencar això no és la solució."
+ WRITELN "No hi veus cap {OREF} por aquí; en qualsevol cas, trencar això no és la solució."
  DONE
 
  ;-----------------------------------------------
@@ -4334,7 +4331,7 @@ DESPERTAR _
  DONE
 
 DESPERTAR _
- WRITELN "Et pessigues la galta pensant que et despertaràs però... no estàs somiant... o sí?"
+ WRITELN "Et pessigues la galta pensant que et despertaràs però... no estás somint... o sí?"
  DONE
 
 ;-----------------------------------------------
@@ -4848,7 +4845,7 @@ ANAR _
 ANAR _			; S'ha trobat un nom però no és un objecte
  NOTEQ 34 255
  EQ 51 255
- WRITELN "No hi veus sentit cap a això."
+ WRITELN "No hi veus sentit a ir hacia eso."
  DONE
 
 ANAR _			; És un objecte presente
